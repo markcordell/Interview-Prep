@@ -9,13 +9,13 @@ GPT_MODEL = "gpt-4"
 
 
 class LLMQuerier:
-    def query(self, system_prompt: str, user_prompt: Optional[str] = None) -> str:
+    def query(system_prompt: str, user_prompt: Optional[str] = None) -> str:
         raise NotImplementedError
 
 
 # This is the base level GPT query system. This should only be used to create new LLMQuery
 class GPT4(LLMQuerier):
-    def query(self, system_prompt: str, user_prompt: Optional[str] = None) -> str:
+    def query(system_prompt: str, user_prompt: Optional[str] = None) -> str:
         messages = [{"role": "system", "content": system_prompt}]
         if user_prompt:
             messages.append({"role": "user", "content": user_prompt})

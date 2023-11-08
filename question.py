@@ -4,7 +4,7 @@ from prompts import CODING_INTERVIEW_PROMPT_V1
 from models.user_info import UserInfo
 from models.user_request import generate_user_request_prompt
 from models.problems import load_seen_problems
-from llm_queries import query_generate_interview_question, query_gpt4
+from llm_queries import GPT4, query_generate_interview_question
 
 import click
 
@@ -16,7 +16,7 @@ FILES_DIR = "./seen_problems"
 @click.option(
     "--user-request",
     default=None,
-    help="Make a request for the interview question (I.E. Make it a graph problem))",
+    help="Make a request for the interview question (I.E. Make it a graph problem)",
 )
 def generate_question(user_request: Optional[str]):
     user_info = UserInfo(
@@ -28,14 +28,15 @@ def generate_question(user_request: Optional[str]):
     )
     seen_problems = load_seen_problems(FILES_DIR)
 
-    parsed_user_request = generate_user_request_prompt(user_request)
+    if user_request:
+        user_request = generate_user_request_prompt(user_request)
     # TODO: Pass user_request to this function
     LLM_prompt = query_generate_interview_question(
-        query_agent=query_gpt4,
+        query_agent=GPT4,
         seen_problems=seen_problems,
         initial_prompt=CODING_INTERVIEW_PROMPT_V1,
         user_information=user_info,
-        user_request=parsed_user_request,
+        user_request=user_request,
     )
 
     print(LLM_prompt)
