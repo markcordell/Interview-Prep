@@ -1,9 +1,10 @@
 from email.policy import default
 from typing import List, Optional
 from prompts import CODING_INTERVIEW_PROMPT_V1
-from models.UserInfo import UserInfo, generate_user_request_prompt
-from models.problems import load_seen_problems, SeenProblems
-from prompt_generator import query_generate_interview_question
+from models.user_info import UserInfo
+from models.user_request import generate_user_request_prompt
+from models.problems import load_seen_problems
+from llm_queries import query_generate_interview_question, query_gpt4
 
 import click
 
@@ -30,6 +31,7 @@ def generate_question(user_request: Optional[str]):
     parsed_user_request = generate_user_request_prompt(user_request)
     # TODO: Pass user_request to this function
     LLM_prompt = query_generate_interview_question(
+        query_agent=query_gpt4,
         seen_problems=seen_problems,
         initial_prompt=CODING_INTERVIEW_PROMPT_V1,
         user_information=user_info,
