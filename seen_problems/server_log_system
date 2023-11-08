@@ -1,0 +1,11 @@
+Design a Server Log Management System. You are provided with multiple servers that generate logs for different kinds of events, such as error logging, debugging, or transaction logging. Each log has the following attributes: ID, Timestamp (the time when the log was created), Type (such as Error, Debug, Transaction), and Content (the content of the log).
+
+Your task is to implement a data structure that will not only store these logs but also efficiently support the following operations:
+
+1) add(Log): Inserts a new log into the system.
+
+2) getLogs(startTime, endTime, type): Fetches all logs that were generated during the given time frame (both inclusive) and matches the specified type. The returned logs should be sorted in ascending order by timestamp.
+
+3) delete(logID): Deletes the log of the specified ID.
+
+Write a Python program to model this server log management system. Don't worry about the communication part between the servers and your system, just focus on designing and implementing the data structure and the operations mentioned above.

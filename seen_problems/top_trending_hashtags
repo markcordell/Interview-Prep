@@ -1,0 +1,12 @@
+Implement a system to find the top trending hashtags from a series of tweets.
+Imagine you have a continuous stream of tweets coming in. Each tweet is a string with words, and some of these words are hashtags (preceded by the # symbol).
+Sample Tweets:
+
+"I love going to the beach #vacation #beachlife"
+"Just had the best burger ever! #foodie"
+"#vacation vibes are the best"
+"Can't believe it's raining again #weather"
+"Exploring the mountains today #vacation #adventure"
+
+Given the list of tweets, design a function that returns the top 'n' trending hashtags based on their frequency.
+E.G. For n=2, the output would be ["#vacation", "#beachlife"] based on the sample tweets above.
