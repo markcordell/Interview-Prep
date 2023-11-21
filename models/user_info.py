@@ -34,6 +34,8 @@ class UserInfo:
             user_info += f"{formatted_key}: {value}\n"
         return user_info
 
+    def __repr__(self) -> str:
+        return self.generate_prompt()
 
-def generate_user_request_prompt(user_request: str) -> str:
-    return USER_REQUEST_PROMPT_V1 + user_request + "\n"
+    def __str__(self) -> str:
+        return self.generate_prompt()
