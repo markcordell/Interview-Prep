@@ -4,6 +4,7 @@ import openai
 
 from models.problems import SeenProblems
 from models.user_info import UserInfo
+from prompt import Prompt
 
 GPT_MODEL = "gpt-4"
 
@@ -35,28 +36,28 @@ class GPT4(LLMQuerier):
 def query_generate_interview_question(
     query_agent: Type[LLMQuerier],
     seen_problems: List[SeenProblems],
-    initial_prompt: str,
+    initial_prompt: Prompt,
     user_information: UserInfo,
-    user_request: Optional[str],
+    user_request: Optional[Prompt],
 ) -> str:
     if not user_request:
-        user_request = ""
+        user_request = Prompt()
 
     # Starts our seen problems prompt section with header
-    formatted_problems = "Seen Problems:\n"
+    formatted_problems = Prompt("Seen Problems:")
 
     for problem in seen_problems:
         # Add a starting and ending set of triple quotes
         # Helps the model determine when a problem starts and ends
-        formatted_problems += "```\n"
-        formatted_problems += f"{problem.problem}\n"
-        formatted_problems += "```\n"
+        # Formatted like this so it's easier to read here.
 
-    final_prompt = (
+        formatted_problems.append(problem.problem)
+
+    final_prompt: Prompt = (
         initial_prompt
         + user_request
         + user_information.generate_prompt()
         + formatted_problems
     )
 
-    return query_agent.query(system_prompt=final_prompt)
+    return query_agent.query(system_prompt=str(final_prompt))
