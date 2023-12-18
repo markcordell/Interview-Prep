@@ -1,6 +1,5 @@
 from typing import List
 from prompt import Prompt
-from prompts import USER_REQUEST_PROMPT_V1
 
 
 class UserInfo:

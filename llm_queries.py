@@ -46,12 +46,15 @@ def query_generate_interview_question(
     # Starts our seen problems prompt section with header
     formatted_problems = Prompt("Seen Problems:")
 
-    for problem in seen_problems:
+    for count, problem in enumerate(seen_problems):
         # Add a starting and ending set of triple quotes
         # Helps the model determine when a problem starts and ends
         # Formatted like this so it's easier to read here.
 
+        # First append a indicator that this is the start of a problem
+        formatted_problems.append(f"Start of Problem {count + 1}")
         formatted_problems.append(problem.problem)
+        formatted_problems.append(f"End of problem {count + 1}")
 
     final_prompt: Prompt = (
         initial_prompt

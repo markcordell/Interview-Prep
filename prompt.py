@@ -19,7 +19,7 @@ class Prompt:
 
     def append(self, appending_object: Union["Prompt", str]) -> None:
         if isinstance(appending_object, Prompt):
-            self.snippets.extend(appending_object)
+            self.snippets.extend(appending_object.snippets)
         elif isinstance(appending_object, str):
             self.snippets.append(appending_object)
         else:

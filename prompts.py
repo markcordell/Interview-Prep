@@ -7,6 +7,10 @@ CODING_INTERVIEW_DIRECTIVE_SNIPPET = Prompt(
     "Please take in the following user information, and previously seen interview questions, and generate one and only one, interview questions for the user to attempt. Once you are finished say [STOP]"
 )
 
-USER_REQUEST_SNIPPET = Prompt(
+USER_REQUEST_PROMPT = Prompt(
     "The user is requesting you to incorporate the following information into the request:"
+)
+
+CODING_INTERVIEW_PROMPT = (
+    CODING_INTERVIEW_IDENTITY_SNIPPET + CODING_INTERVIEW_DIRECTIVE_SNIPPET
 )
